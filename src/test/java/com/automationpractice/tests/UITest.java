@@ -68,7 +68,7 @@ public class UITest extends BaseWeb {
 
     @Test
     @Story("004 Negative authorization with invalid userEmail and invalid userPassword")
-    @Description("Authorization test with invalid all data")
+    @Description("Authorization test with invalid all data 11")
     public void authorizationTestWithInvalidUserNameAndPassword() {
         landingPage
                 .openAuthenticationPage()
