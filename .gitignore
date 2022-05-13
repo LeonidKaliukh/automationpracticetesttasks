@@ -1,0 +1,6 @@
+# IntelliJ project files
+.allure
+.idea
+allure-results
+build
+target
