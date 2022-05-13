@@ -25,10 +25,6 @@ You will need the following technologies available to try it out:
 
 ```mvn clean test```
 
-### Generate Allure report 
-
-```mvn allure:report```
-
 ### Open Allure report in browser
 
 ```mvn allure:serve```
