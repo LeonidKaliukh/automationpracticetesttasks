@@ -59,11 +59,6 @@ public class AuthorizationPage {
         return this;
     }
 
-    public AuthorizationPage getEmailInvalidError() {
-        $x("//li[contains(text(), 'Invalid email address.')]").shouldBe(Condition.appear);
-        return this;
-    }
-
     public AuthorizationPage getAuthenticationFailedError() {
         $x("//li[contains(text(), 'Authentication failed.')]").shouldBe(Condition.appear);
         return this;
