@@ -8,6 +8,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AuthorizationPage;
 import pages.LandingPage;
+import pages.MyAccountPage;
 
 @Listeners({CustomTestListener.class})
 public class UITest extends BaseWeb {
@@ -18,6 +19,8 @@ public class UITest extends BaseWeb {
     private static final String TEST_USER = "Leonid Kaliukh";
     private final String userEmail = "leonid.kaliukh@gmail.com";
     private final String userPassword = "11223344";
+
+    private static final String SignIn = "Sign in";
 
     @Test
     @Description("Create new user test")
@@ -39,7 +42,8 @@ public class UITest extends BaseWeb {
                 .enterUserPassword(userPassword)
                 .clickSignInButton()
                 .assertSuccessLogin(TEST_USER)
-                .clickSignOut();
+                .clickSignOut()
+                .assertSuccessLogout();
     }
 
     @Test
@@ -90,7 +94,7 @@ public class UITest extends BaseWeb {
     }
 
     @Test
-    @Story("005 Negative authorization with empty userEmail and valid userPassword")
+    @Story("006 Negative authorization with empty userEmail and valid userPassword")
     @Description("Authorization test with invalid data")
     public void authorizationTestWithEmptyUserName() {
         landingPage
@@ -98,5 +102,24 @@ public class UITest extends BaseWeb {
                 .enterUserPassword(userPassword)
                 .clickSignInButton();
         authorizationPage.getEmailRequiredError();
+    }
+
+    @Test
+    @Story("Logout by mylogout/")
+    @Description("logout By Mylogout Action")
+    public void logoutByMylogoutActionTest() {
+        landingPage
+                .openAuthenticationPage()
+                .enterUserEmail(userEmail)
+                .enterUserPassword(userPassword)
+                .clickSignInButton()
+                .assertSuccessLogin(TEST_USER)
+                .createNewBrowserTab()
+                .switchBetweenBrowserTab(1)
+                .openUrl("http://automationpractice.com/index.php?mylogout")
+                .assertSuccessLogout()
+                .switchBetweenBrowserTab(0)
+                .refreshPage()
+                .assertSuccessLogout();
     }
 }
